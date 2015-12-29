@@ -28,15 +28,15 @@ import create_table, types from require "lapis.db.schema"
 	[1451397698]: =>
 		create_table "profile_data", {
 			{ "uuid", types.foreign_key primary_key: true }
-			{ "gender", types.enum }
-			{ "minecraft", types.varchar }
-			{ "steam", types.varchar }
-			{ "xbox", types.varchar }
-			{ "psn", types.varchar }
-			{ "wiiu", types.varchar }
-			{ "twitter", types.varchar }
-			{ "google", types.varchar }
-			{ "youtube", types.varchar }
+			{ "gender", types.enum default: 0 }
+			{ "minecraft", types.varchar default: "" }
+			{ "steam", types.varchar default: "" }
+			{ "xbox", types.varchar default: "" }
+			{ "psn", types.varchar default: "" }
+			{ "wiiu", types.varchar default: "" }
+			{ "twitter", types.varchar default: "" }
+			{ "google", types.varchar default: "" }
+			{ "youtube", types.varchar default: "" }
 		}
 		
 	[1451397699]: =>
