@@ -24,6 +24,18 @@ class UserGroupPairs extends Model
 		{"gid", belongs_to: "Groups"}
 	}
 
+class ProfileData extends Model
+	@primary_key: "uuid"
+	@relations: {
+		{"uuid", belongs_to: "Users"}
+	}
+
+class Sessions extends Model
+	@primary_key: "sid"
+	@relations: {
+		{"uuid", belongs_to: "Users"}
+	}
+
 {
-	:Users, :Groups, :UserGroupPairs
+	:Users, :Groups, :UserGroupPairs, :ProfileData, :Sessions
 }
