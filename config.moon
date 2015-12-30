@@ -1,3 +1,4 @@
+
 import config from require "lapis.config"
 
 config "production", ->
@@ -9,6 +10,9 @@ config "production", ->
 		user "lapis"
 		password "thisisnotsecureatallbutwhocares"
 		database "lapis"
+	secret "itsasecret"
+	recaptcha_sitekey ""
+	recaptcha_secret ""
 
 config "development", ->
 	num_workers 1
@@ -19,3 +23,6 @@ config "development", ->
 		user "lapis"
 		password "thisisnotsecureatallbutwhocares"
 		database "lapis"
+	secret "itsasecret"
+	recaptcha_sitekey ""
+	recaptcha_secret ""
