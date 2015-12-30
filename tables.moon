@@ -1,5 +1,5 @@
 
-import Model from require "lapis.db.model"
+import Model, enum from require "lapis.db.model"
 
 class Users extends Model
 	@primary_key: "uuid"
@@ -28,6 +28,11 @@ class ProfileData extends Model
 	@primary_key: "uuid"
 	@relations: {
 		{"uuid", belongs_to: "Users"}
+	}
+	@gender: enum {
+		none: 0
+		male: 1
+		female: 2
 	}
 
 class Sessions extends Model

@@ -1,5 +1,6 @@
 -- file to add custom input validators e.g. recaptcha validation
 config = require("lapis.config").get!
+tables = require "tables"
 
 import validate_functions, assert_valid from require "lapis.validate"
 import from_json from require "lapis.util"
@@ -17,9 +18,15 @@ validate_functions.recaptcha_verify = (response, remote_addr) ->
 	data.success, "ReCaptcha validation failed, please try again."
 
 validate_functions.is_valid_email = (email) ->
-	{
-		email\match "[A-Za-z0-9%.%%%+%-]+@[A-Za-z0-9%.%%%+%-]+%.%w%w%w?%w?"
-		"The e-mail address provided is not a valid address."
-	}
+	match = email\match "[A-Za-z0-9%.%%%+%-]+@[A-Za-z0-9%.%%%+%-]+%.%w%w%w?%w?"
+	match, "The e-mail address provided is not a valid address."
+
+validate_functions.username_available = (username) ->
+	count = tables.Users\count "username LIKE ?", username
+	count == 0, "An account with the specified username already exists."
+
+validate_functions.email_available = (email) ->
+	count = tables.Users\count "email LIKE ?", email
+	count == 0, "An account with the specified email address already exists."
 
 { :validate_functions, :assert_valid }

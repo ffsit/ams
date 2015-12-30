@@ -21,10 +21,20 @@ class extends lapis.Application
 		POST: capture_errors_json =>
 			csrf.assert_token @
 			assert_valid @params, {
-				{ "username", exists: true, min_length: 2 }
+				{
+					"username"
+					exists: true
+					min_length: 2
+					username_available: @params.username
+				}
 				{ "password", exists: true, min_length: 8 }
 				{ "password_repeat", equals: @params.password }
-				{ "email", exists: true, is_valid_email: @params.email }
+				{
+					"email"
+					exists: true
+					is_valid_email: @params.email
+					email_available: @params.email
+				}
 				{
 					"g-recaptcha-response"
 					exists: true
