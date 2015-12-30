@@ -11,7 +11,6 @@ class Users extends Model
 		email: (value) =>
 			if not value\match "[A-Za-z0-9%.%%%+%-]+@[A-Za-z0-9%.%%%+%-]+%.%w%w%w?%w?"
 				"The e-mail address provided is not a valid address."
-
 	}
 
 class Groups extends Model
@@ -41,6 +40,14 @@ class Sessions extends Model
 		{"uuid", belongs_to: "Users"}
 	}
 
+class EmailVerifications extends Model
+	@primary_key: "evid"
+	@constraints: {
+		email: (value) =>
+			if not value\match "[A-Za-z0-9%.%%%+%-]+@[A-Za-z0-9%.%%%+%-]+%.%w%w%w?%w?"
+				"The e-mail address provided is not a valid address."
+	}
+
 {
-	:Users, :Groups, :UserGroupPairs, :ProfileData, :Sessions
+	:Users, :Groups, :UserGroupPairs, :ProfileData, :Sessions, :EmailVerifications
 }

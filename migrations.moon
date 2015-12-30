@@ -46,4 +46,12 @@ import create_table, types from require "lapis.db.schema"
 			{ "hash", types.varchar }
 			{ "timestamp", types.time }
 		}
+		
+	[1451509633]: =>
+		create_table "email_verifications", {
+			{ "evid", types.serial primary_key: true }
+			{ "email", types.varchar }
+			{ "hash", types.varchar }
+			{ "timestamp", types.time }
+		}
 }
