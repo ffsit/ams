@@ -1,0 +1,3 @@
+[submodule "lua-sendmail"]
+	path = lua-sendmail
+	url = https://github.com/ffsit/lua-sendmail

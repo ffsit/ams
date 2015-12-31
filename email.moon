@@ -7,7 +7,7 @@ sendmail = require "sendmail"
 import build_url, encode_query_string from require "lapis.util"
 
 send_email = (recipient, subject, text, html) ->
-	sendmail{
+	sendmail.send {
 		from: {
 			title: "AMS"
 			address: config.email.user .. "@" .. config.email.hostname

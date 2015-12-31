@@ -43,13 +43,16 @@ class extends lapis.Application
 				hash: "stub" --add something actually sensible here
 			}
 
-			email.send_verification_email ev
+			ok, err = email.send_verification_email ev
 
-			@html ->
-				link rel: "stylesheet", href: "/static/style.css"
+			if ok
+				@html ->
+					link rel: "stylesheet", href: "/static/style.css"
 
-				h1 "Success"
-				p "We've sent you an e-mail containing a link to complete registration."
+					h1 "Success"
+					p "We've sent you an e-mail containing a link to complete registration."
+			else
+				@write err, status: 500
 
 	}
 
