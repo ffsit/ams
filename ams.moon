@@ -63,6 +63,10 @@ class extends lapis.Application
 					email_available: @params.email
 				}
 				{
+					"evid"
+					exists: true
+				}
+				{
 					"verify"
 					exists: true
 				}

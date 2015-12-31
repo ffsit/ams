@@ -32,6 +32,7 @@ send_verification_email = (ev) ->
 		path: "new_user"
 		query: encode_query_string {
 			email: ev.email
+			evid: ev.evid
 			verify: ev.hash
 		}
 	}
