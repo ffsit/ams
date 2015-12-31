@@ -10,6 +10,12 @@ config "production", ->
 		user "lapis"
 		password "thisisnotsecureatallbutwhocares"
 		database "lapis"
+	email ->
+		host "127.0.0.1"
+		hostname ""
+		user "lapis"
+		password "thisisnotsecureatalleither"
+		use_ssl true
 	secret "itsasecret"
 	recaptcha_sitekey ""
 	recaptcha_secret ""
@@ -23,6 +29,12 @@ config "development", ->
 		user "lapis"
 		password "thisisnotsecureatallbutwhocares"
 		database "lapis"
+	email ->
+		host "127.0.0.1"
+		hostname ""
+		user "lapis"
+		password "thisisnotsecureatalleither"
+		use_ssl true
 	secret "itsasecret"
 	recaptcha_sitekey ""
 	recaptcha_secret ""

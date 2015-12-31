@@ -39,19 +39,21 @@ import create_table, types from require "lapis.db.schema"
 			{ "youtube", types.varchar default: "" }
 		}
 		
-	[1451397699]: =>
+	[451509636]: =>
 		create_table "sessions", {
 			{ "sid", types.serial primary_key: true }
 			{ "uuid", types.foreign_key }
 			{ "hash", types.varchar }
-			{ "timestamp", types.time }
+			{ "created_at", types.time }
+			{ "updated_at", types.time }
 		}
 		
-	[1451509633]: =>
+	[1451509637]: =>
 		create_table "email_verifications", {
 			{ "evid", types.serial primary_key: true }
 			{ "email", types.varchar }
 			{ "hash", types.varchar }
-			{ "timestamp", types.time }
+			{ "created_at", types.time }
+			{ "updated_at", types.time }
 		}
 }

@@ -2,7 +2,7 @@
 config = require("lapis.config").get!
 tables = require "tables"
 
-import validate_functions, assert_valid from require "lapis.validate"
+import validate_functions, assert_valid, validate from require "lapis.validate"
 import from_json from require "lapis.util"
 
 http = require "lapis.nginx.http"
@@ -29,4 +29,4 @@ validate_functions.email_available = (email) ->
 	count = tables.Users\count "email LIKE ?", email
 	count == 0, "An account with the specified email address already exists."
 
-{ :validate_functions, :assert_valid }
+{ :validate_functions, :assert_valid, :validate }

@@ -36,12 +36,14 @@ class ProfileData extends Model
 
 class Sessions extends Model
 	@primary_key: "sid"
+	@timestamp: true
 	@relations: {
 		{"uuid", belongs_to: "Users"}
 	}
 
 class EmailVerifications extends Model
 	@primary_key: "evid"
+	@timestamp: true
 	@constraints: {
 		email: (value) =>
 			if not value\match "[A-Za-z0-9%.%%%+%-]+@[A-Za-z0-9%.%%%+%-]+%.%w%w%w?%w?"

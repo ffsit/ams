@@ -6,7 +6,6 @@ import Widget from require "lapis.html"
 class extends Widget
 	content: =>
 			link rel: "stylesheet", href: "/static/style.css"
-			script src: "https://www.google.com/recaptcha/api.js"
 			
 			h1 "Create New User"
 			form method: "POST", action: @url_for("new_user"), ->
@@ -17,7 +16,7 @@ class extends Widget
 				raw "<br>"
 				
 				label for: "email", "E-Mail address"
-				input type: "text", name: "email"
+				input type: "text", name: "email", value: @email, disabled: "true"
 				raw "<br>"
 				
 				label for: "password", "Password"
@@ -29,5 +28,3 @@ class extends Widget
 				raw "<br>"
 
 				input type: "submit"
-
-				div class: "g-recaptcha", ["data-sitekey"]: config.recaptcha_sitekey
