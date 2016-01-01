@@ -27,9 +27,11 @@ send_email = (recipient, subject, text, html) ->
 	}
 
 -- takes the result from a create or search query with an email verifications entry
-send_verification_email = (ev) ->
+send_verification_email = (ev) =>
 	url = build_url {
 		path: "new_user"
+		host: @req.parsed_url.host
+		scheme: @req.parsed_url.scheme
 		query: encode_query_string {
 			email: ev.email
 			evid: ev.evid
@@ -37,17 +39,19 @@ send_verification_email = (ev) ->
 		}
 	}
 
+-- annoyingly multiline strings don't take indentation into account.
+-- probably will end up pulling any messages displayed to users out into some
+-- sort of string table or database, so I guess it's only a temporary headache.
 	message = "Hello
 
-	You recently requested to create a new account using this e-mail address.
-	Use the following link to complete registraiton:
+You recently requested to create a new account using this e-mail address.
+Use the following link to complete registraiton:
 
-	" .. url .. "
+" .. url .. "
 	
-	If you did not request to create an user account you may ignore this e-mail.
+If you did not request to create an user account you may ignore this e-mail.
 
-	Best Regards
-	"
+Best Regards"
 
 	send_email ev.email, "Verify your E-Mail address", message
 

@@ -3,11 +3,11 @@ lapis = require "lapis"
 csrf = require "lapis.csrf"
 tables = require "tables"
 bcrypt = require "bcrypt"
-email = require "email"
 
 import capture_errors_json, respond_to from require "lapis.application"
 import validate_functions, assert_valid, validate from require "validators"
 import to_json from require "lapis.util"
+import send_verification_email from require "email"
 
 class extends lapis.Application
 
@@ -43,7 +43,7 @@ class extends lapis.Application
 				hash: "stub" --add something actually sensible here
 			}
 
-			ok, err = email.send_verification_email ev
+			ok, err = send_verification_email @, ev
 
 			if ok
 				@html ->
