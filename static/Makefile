@@ -15,3 +15,5 @@ all: $(CSS) $(JS)
 	coffee -c $< $@
 
 clean: 
+	$(foreach FILE, $(CSS), rm -f $(FILE);)
+	$(foreach FILE, $(KS), rm -f $(FILE);)

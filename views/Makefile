@@ -8,4 +8,4 @@ all: $(PROGS)
 	moonc -o $@ $<
 
 clean: 
-	rm -f *.lua
+	$(foreach PROG, $(PROGS), rm -f $(PROG);)

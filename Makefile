@@ -13,7 +13,7 @@ $(SUBDIRS):
 	$(MAKE) -C $@ $<
 
 clean:
-	rm -f *.lua
+	$(foreach PROG, $(PROGS), rm -f $(PROG);)
 	$(foreach DIR, $(SUBDIRS), $(MAKE) -C $(DIR) $@;)
 
 .PHONY: all $(SUBDIRS)
