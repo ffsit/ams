@@ -32,6 +32,7 @@ send_verification_email = (ev) =>
 		path: "new_user"
 		host: @req.parsed_url.host
 		scheme: @req.parsed_url.scheme
+		port: if @req.parsed_url.port == 80 then nil else @req.parsed_url.port
 		query: encode_query_string {
 			email: ev.email
 			evid: ev.evid
@@ -48,7 +49,7 @@ You recently requested to create a new account using this e-mail address.
 Use the following link to complete registraiton:
 
 " .. url .. "
-	
+
 If you did not request to create an user account you may ignore this e-mail.
 
 Best Regards"
