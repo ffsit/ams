@@ -40,7 +40,7 @@ class extends lapis.Application
 
 			ev = tables.EmailVerifications\create {
 				email: @params.email
-				hash: "stub" --add something actually sensible here
+				hash: ""
 			}
 
 			ok, err = send_verification_email @, ev

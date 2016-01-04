@@ -5,6 +5,7 @@ tables = require "tables"
 sendmail = require "sendmail"
 
 import build_url, encode_query_string from require "lapis.util"
+import create_email_hash from require "session"
 
 send_email = (recipient, subject, text, html) ->
 	sendmail.send {
@@ -28,6 +29,9 @@ send_email = (recipient, subject, text, html) ->
 
 -- takes the result from a create or search query with an email verifications entry
 send_verification_email = (ev) =>
+	hash, err = create_email_hash ev
+	unless hash return hash, err
+
 	url = build_url {
 		path: "new_user"
 		host: @req.parsed_url.host
@@ -36,7 +40,7 @@ send_verification_email = (ev) =>
 		query: encode_query_string {
 			email: ev.email
 			evid: ev.evid
-			verify: ev.hash
+			verify: hash
 		}
 	}
 
