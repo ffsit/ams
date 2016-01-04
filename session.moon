@@ -32,8 +32,4 @@ verify_email_hash = (ev, hash) ->
 	else
 		nil, "Invalid verification hash provided."
 
-
-
-
-
-{ :create_email_hash, verify_email_hash }
+{ :create_email_hash, :verify_email_hash }

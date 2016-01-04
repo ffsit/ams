@@ -1,5 +1,6 @@
 
 import Model, enum from require "lapis.db.model"
+import raw from require "lapis.db"
 
 class Users extends Model
 	@primary_key: "uuid"
@@ -51,5 +52,5 @@ class EmailVerifications extends Model
 	}
 
 {
-	:Users, :Groups, :UserGroupPairs, :ProfileData, :Sessions, :EmailVerifications
+	:Users, :Groups, :UserGroupPairs, :ProfileData, :Sessions, :EmailVerifications, :raw
 }

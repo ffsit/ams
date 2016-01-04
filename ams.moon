@@ -25,16 +25,13 @@ class extends lapis.Application
 				{
 					"email"
 					exists: true
-					is_valid_email: @params.email
-					email_available: @params.email
+					is_valid_email: true
+					email_available: true
 				}
 				{
 					"g-recaptcha-response"
 					exists: true
-					recaptcha_verify: {
-						@params["g-recaptcha-response"]
-						@req.remote_addr
-					}
+					recaptcha_verify: @req.remote_addr
 				}
 			}
 
@@ -62,8 +59,8 @@ class extends lapis.Application
 				{
 					"email"
 					exists: true
-					is_valid_email: @params.email
-					email_available: @params.email
+					is_valid_email: true
+					email_available: true
 				}
 				{
 					"evid"
@@ -72,11 +69,10 @@ class extends lapis.Application
 				{
 					"verify"
 					exists: true
+					email_hash_valid: @params.evid
 				}
 			}
-			@write "Invalid or expired registration session, please restart", status: 500 if errors
-			@email = @params.email
-			@hash = @params.verify
+			@write "Invalid or expired registration session, please restart.", status: 500 if errors
 
 		GET: =>
 			@csrf_token = csrf.generate_token @

@@ -4,6 +4,7 @@ tables = require "tables"
 
 import validate_functions, assert_valid, validate from require "lapis.validate"
 import from_json from require "lapis.util"
+import verify_email_hash from require "session"
 
 http = require "lapis.nginx.http"
 
@@ -28,5 +29,13 @@ validate_functions.username_available = (username) ->
 validate_functions.email_available = (email) ->
 	count = tables.Users\count "email LIKE ?", email
 	count == 0, "An account with the specified email address already exists."
+
+validate_functions.email_hash_valid = (verify, evid) ->
+	{ ev } = tables.EmailVerifications\select "where evid = ? " .. 
+		"and created_at > (now() AT TIME ZONE 'UTC' - interval '2 hours')", evid
+	unless ev
+		nil, "The specified session does not exist or has expired."
+	else
+		verify_email_hash ev, verify
 
 { :validate_functions, :assert_valid, :validate }
